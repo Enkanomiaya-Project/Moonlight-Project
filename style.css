@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;	
+	font-family: Raleway, sans-serif;
+}
+
+body {
+	background: white	
+}
+
+.container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+}
+
+.screen {		
+	background-color: rgba(184, 166, 192, 0.4);
+	position: relative;	
+	height: 380px;
+	width: 400px;	
+    border-radius: 29px;
+}
+
+.screen__content {
+	z-index: 1;
+	position: relative;	
+	height: 100%;
+}
+
+.login_text {
+    position: relative;
+    padding-top: 15px;
+    text-align: center;
+    font-size: 40px;
+    color: gray;
+}
+.login {
+	width: 350px;
+	padding: 15px;
+	padding-top: 25px;
+}
+
+.login__field {
+	padding: 10px 0px;	
+	position: relative;	
+    left: 25px;
+}
+
+.login__icon {
+	position: absolute;
+	top: 30px;
+	color: #7875B5;
+}
+
+.login__input {
+	border: none;
+	border-bottom: 2px solid #D1D1D4;
+	background: white;
+	padding: 10px;
+	padding-left: 35px;
+	font-weight: 700;
+	width: 75%;
+	transition: .2s;
+    border-radius: 5px;
+}
+
+.login__input:active,
+.login__input:focus,
+.login__input:hover {
+	outline: none;
+	border-bottom-color: #6A679E;
+}
+
+.login__submit {
+	background: #fff;
+	font-size: 14px;
+	margin-top: 15px;
+    margin-left: 34px;
+	padding: 16px 20px 20px 16px;
+	border-radius: 15px;
+	border: 1px solid #D4D3E8;
+	text-transform: uppercase;
+	font-weight: 700;
+	display: flex;
+	width: 300px;
+	color: #4C489D;
+	cursor: pointer;
+	transition: .2s;
+}
+
+.login__submit:active,
+.login__submit:focus,
+.login__submit:hover {
+	border-color: #6A679E;
+	outline: none;
+}
+
+.button__icon {
+	font-size: 24px;
+	margin-left: auto;
+	color: #7875B5;
+}
+
+.button_text {
+    position: relative;
+    left: 43%;
+}
+
+.to_signup {
+    position: relative;
+    left: 18%;
+    padding-top: 30px;
+}
+
+.mail_icon {
+    width: 50px;
+    position: relative;
+    left: 1px;
+    top: 15px;
+}
+
+.password_icon{
+    width: 50px;
+    position: relative;
+    left: 1px;
+    top: 18px;
+}
+
