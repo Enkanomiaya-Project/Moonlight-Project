@@ -219,3 +219,63 @@ body {
     position: relative;
     left: 43%;
 }
+
+
+/* Home page*/
+.promotion {
+    position: relative;
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
+.category-bar {
+    align-items: center;
+    width: 100%;
+    height: 300px;
+}
+
+.item-box {
+    width: 100px;
+    height: 100px;
+    background-color: rgba(184, 166, 192, 0.4);
+    border-top: 1px;
+    position: relative;
+    margin-top: 20px;
+    margin-right: 20px;
+    border-radius: 20px;
+    display: inline-block;
+}
+
+.category {
+    position: relative;
+    margin-left: 1px;
+    font-size: 20px;
+    color: #b8a6c0;
+}
+
+.stage {
+    align-items: center;
+    position: relative;
+    margin-left: 26%;
+}
+
+.item-name {
+    text-align: center;
+}
+
+.img-res {
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+.name:link {
+    text-decoration: none;
+    color: white;
+    width: 100px;
+    height: 100px;
+}
+
+a.name {
+    width: 100px;
+    height: 100px;
+}
