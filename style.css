@@ -8,7 +8,9 @@
 }
 
 body {
-	background: white	
+	background: white;
+    width: 100%;
+    height: 100%;
 }
 
 .container {
@@ -284,6 +286,8 @@ a.name {
 
 .product-container {
     align-items: center;
+    justify-content: center;
+    width: 100%;    
 }
 
 .flex-container .flex-item{
