@@ -44,7 +44,7 @@ a:hover {
 
 .list  {
     position: relative;
-    top: -13rem;
+    top: -8rem;
     text-decoration: none;
 }
 
@@ -111,6 +111,13 @@ a:hover {
     position: absolute;
     right: 2rem;
     top: -1rem;
+}
+
+.logout button{
+    color: black;
+    width: 5rem;
+    height: 2rem;
+    margin-left: 4rem;
 }
 
 
