@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Raleway, sans-serif;
+    font-weight: bold;
+}
+
+body {
+    height: 1vh;
+    width: 1vh;
+
+}
+
+.navbar {
+    height: 100%;
+    width: 15%;
+    background: #C0ADAD;
+    position: fixed  ;
+    /* display: none; */
+}
+
+ul li {
+    font-size: 16px;
+    color: black;
+    margin-left: -0.5rem;
+    margin-bottom: 0.25rem;
+    list-style: none;
+    
+    /* border: red solid; */
+    
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    color:white;
+}
+
+.list  {
+    position: relative;
+    top: -13rem;
+    text-decoration: none;
+}
+
+.order-mang {
+    font-size: 16px;
+    margin-bottom: 0.25rem;
+    margin-top: 0.45rem;
+}
+
+.user{
+    position: relative;
+    font-size: 5rem;
+    left: 30%;
+    top: -3rem;
+    /* border: red solid ; */
+}
+.topic {
+    position: relative;
+    margin-left: 14.375rem;
+    background-color: #D9D9D9;
+    width: 82rem;
+    height: 15rem;
+    /* border: red solid; */
+  
+}
+
+.topic-head {
+    padding-left: 1rem;
+    padding-top: 8rem;
+    color: black;
+    /* border: red solid; */
+    font-size: 4rem;
+}
+
+.container {
+    margin-left: 14.375rem;
+    width: 82rem;
+    height: 14rem;
+    /* border: solid red; */
+    margin-top: 2rem;
+    position: relative;
+}
+
+.container table {
+   width: 100%;
+   height: 100%;
+}
+
+.container table tr th {
+    margin-left: 100px;
+    font-size: 16px;
+}
+
+.container table tr td {
+    font-size: 16px;
+}
+
+.container table tr td input[type='checkedbox']{
+    width: 1rem;
+    height: 1rem;
+}
+
+.update {
+    position: absolute;
+    right: 2rem;
+    top: -1rem;
+}
+
+
