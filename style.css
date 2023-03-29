@@ -279,3 +279,56 @@ a.name {
     width: 100px;
     height: 100px;
 }
+
+/* Main dish page */
+
+.product-container {
+    align-items: center;
+}
+
+.flex-container .flex-item{
+    padding: 15px;
+    border: 1px solid #b8a6c0;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 12px;
+    display: flex;
+} 
+
+.heading {
+    margin-top: 40px;
+    color: #b8a6c0;
+    text-align: center;
+}
+
+.product-item {
+    width: 250px;
+    height: 260px;
+    border: 1px solid #b8a6c0;
+    border-radius: 12px;
+    display: inline-block;
+    margin: 50px;
+}
+
+.container-row {
+    position: fixed;
+    margin-left: 12%;
+    display: block;
+}
+
+.item-picture {
+    align-items: center;
+    position: relative;
+    margin-left: 20px;
+    width: 200px;
+    height: 200px;
+}
+
+.btn {
+    border: 1px solid #6A679E;
+    background-color: #6A679E;
+    border-radius: 10px;
+    width: 210px;
+    height: 30px;
+    position: relative;
+}
