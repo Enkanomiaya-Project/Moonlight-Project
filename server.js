@@ -11,7 +11,7 @@ const { log } = require("console");
 
 const app = express();
 
-app.use(express.static("public"));
+app.use('/public' ,express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 
@@ -34,22 +34,44 @@ app.use(session({
 app.get('/', (req,res) => {
   console.log(req.session);
   req.session.text = 'Hello'
-  res.render("login.ejs");
+  res.render("home.ejs");
 }); 
 
 app.get('/signup', (req, res) => {
   res.render('signup.ejs')
 })
-
-app.get('/home', (req, res) => {
-  res.render('home.ejs')
+app.get('/main', (req, res) => {
+  res.render('main.ejs')
 })
+app.get('/cart', (req, res) => {
+  res.render('cart.ejs')
+})
+app.get('/profile', (req, res) => {
+  res.render('profile.ejs')
+})
+app.get('/login', (req, res) => {
+  res.render('profile.ejs')
+})
+app.get('/drinks', (req, res) => {
+  res.render('drink.ejs')
+})
+app.get('/main', (req, res) => {
+  res.render('main.ejs')
+})
+app.get('/history', (req, res) => {
+  res.render('history.ejs')
+})
+app.get('/ordering_status', (req, res) => {
+  res.render('ordering_status.ejs')
+})
+// app.get('/home', (req, res) => {
+//   res.render('home.ejs')
+// })
 
 app.get('/admin', (req, res) => {
   res.render('admin.ejs')
 })
 
-__dirname+"home.html"
 // app.post('/sign up', async(req, rwes) => {
 //   const { newEmail, newPassword } = req.body;
 // })

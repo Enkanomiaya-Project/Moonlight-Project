@@ -5,32 +5,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dessert</title>
-    <link rel="stylesheet" href="style.css">
+    <<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header>
-
-    </header>
+    <%- include('partials/header'); %>
     <div class="catogery-bar">
         <div>
-            <img src="picture/menu.png" alt="menu" style="margin-left: 200px; width: 50px; height: 25px;">
+            <img src="../picture/menu.png" alt="menu" style="margin-left: 200px; width: 50px; height: 25px;">
             <label for="menu" class="category">Category</label>
         </div>
         <div class="stage">
             <div class="item-box item-name">
-                <a href="main.html" class="name"><img src="/picture/main.png" alt="maindish" class="img-res" style="width: 75px;"></a>
+                <a href="main.html" class="name"><img src="../picture/main.png" alt="maindish" class="img-res" style="width: 75px;"></a>
                 <span style="color: black;">Main</span>
             </div>
             <div class="item-box item-name">
-                <a href="appetizer.html" class="name"><img src="/picture/appetize.png" alt="appetizer" class="img-res" style="width: 75px; height: 39px;"></a>
+                <a href="appetizer.html" class="name"><img src="../picture/appetize.png" alt="appetizer" class="img-res" style="width: 75px; height: 39px;"></a>
                 <span style="color: black;">Appetizer</span>
             </div>
             <div class="item-box item-name">
-                <a href="drink.html" class="name"><img src="/picture/drinks.png" alt="drinks" class="img-res" style="width: 75px; height: 39px;"></a>
+                <a href="drink.html" class="name"><img src="../picture/drinks.png" alt="drinks" class="img-res" style="width: 75px; height: 39px;"></a>
                 <span style="color: black;">Drinks</span>
             </div>
             <div class="item-box item-name">
-                <a href="dessert.html" class="name"><img src="/picture/desserts.png" alt="drinks" class="img-res" style="width: 75px; height: 39px;"></a>
+                <a href="dessert.html" class="name"><img src="../picture/desserts.png" alt="drinks" class="img-res" style="width: 75px; height: 39px;"></a>
                 <span style="color: black;">Dessert</span>
             </div>
         </div>
@@ -41,7 +39,7 @@
         <div class="container-row">
             <div class="product-item">
                 <div class="item-picture">
-                    <img src="/picture/choclava.png" alt="choclava" style="width: 200px; height: 180px;">
+                    <img src="../picture/choclava.png" alt="choclava" style="width: 200px; height: 180px;">
                     <span style="text-align: center; color: #b8a6c0;">Chocolate lava</span>
                     <div style="margin-top: 10px;">
                         <button class="btn add-to-cart">
@@ -52,7 +50,7 @@
             </div> 
             <div class="product-item">
                 <div class="item-picture">
-                    <img src="/picture/stawberrycheesecake.png" alt="stawberrycheesecake" style="width: 200px; height: 180px;">
+                    <img src="../picture/stawberrycheesecake.png" alt="stawberrycheesecake" style="width: 200px; height: 180px;">
                     <span style="text-align: center; color: #b8a6c0;">Stawberry cheesecake</span>
                     <div style="margin-top: 10px;">
                         <button class="btn add-to-cart">
@@ -63,7 +61,7 @@
             </div>
             <div class="product-item">
                 <div class="item-picture">
-                    <img src="/picture/honeytoast.png" alt="honeytoast" style="width: 200px; height: 180px;">
+                    <img src="../picture/honeytoast.png" alt="honeytoast" style="width: 200px; height: 180px;">
                     <span style="text-align: center; color: #b8a6c0;">Honey toast</span>
                     <div style="margin-top: 10px;">
                         <button class="btn add-to-cart">
@@ -74,7 +72,7 @@
             </div>
             <div class="product-item">
                 <div class="item-picture">
-                    <img src="/picture/frenchtoast.png" alt="frenchtoast" style="width: 200px; height: 180px;">
+                    <img src="../picture/frenchtoast.png" alt="frenchtoast" style="width: 200px; height: 180px;">
                     <span style="text-align: center; color: #b8a6c0;">French toast</span>
                     <div style="margin-top: 10px;">
                         <button class="btn add-to-cart">
@@ -85,7 +83,7 @@
             </div>
             <div class="product-item">
                 <div class="item-picture">
-                    <img src="/picture/chocice.png" alt="chocice" style="width: 200px; height: 180px;">
+                    <img src="../picture/chocice.png" alt="chocice" style="width: 200px; height: 180px;">
                     <span style="text-align: center; color: #b8a6c0;">Chocolate icecream</span>
                     <div style="margin-top: 10px;">
                         <button class="btn add-to-cart">
@@ -96,7 +94,7 @@
             </div>
             <div class="product-item">
                 <div class="item-picture">
-                    <img src="/picture/parfait.png" alt="parfait" style="width: 200px; height: 180px;">
+                    <img src="../picture/parfait.png" alt="parfait" style="width: 200px; height: 180px;">
                     <span style="text-align: center; color: #b8a6c0;">Parfait</span>
                     <div style="margin-top: 10px;">
                         <button class="btn add-to-cart">
@@ -107,5 +105,6 @@
             </div>
         </div>
     </div>
+    <%- include('partials/footer'); %>
 </body>
 </html>
