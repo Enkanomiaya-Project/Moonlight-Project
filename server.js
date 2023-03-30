@@ -1,34 +1,57 @@
 const express = require("express");
 const session = require("express-session");
 const mongoose = require("mongoose");
-const MonoStore = require("connect-mongo");
-const MongoDBSession = require("connect-mongodb");
+const MongoStore = require("connect-mongo");
 const Authn = require("./control/authen");
 const { connect } = require("moongose/routes");
-const user = require;
+const { User } = require("./model/user");
+const db = require("./config/db.js");
+const bodyParser = require("body-parser");
+
+
 const app = express();
 
+app.use(express.static("public"));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
-const mongoURI = "mongodb://localhost:27016/sessions";
+
+// const mongoURI = "mongodb://localhost:27016/sessions";
+// const store = new MongoStore();
 
 db.connect();
 
-const store = new MongoDBSession({
-  uri: mongoURI,
-  collection: "mySesions",
-});
+app.use(session({
+  secret: 'fsdfds121sdfs1d5sdffsdfs156a',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { maxAge: 3600000 },
+  store: MongoStore.create({
+  mongoUrl: `mongodb://Mongo:Mongo1234@localhost:27018/?authMechanism=DEFAULT`,
+  dbName: "Moonlight-DB" 
+}),
+}));
 
-app.use(
-  session({
-    secret: "jklfsodifjsktnwjasdp465dd",
-    resave: false,
-    saveUninitialized: true,
-    cookie: { maxAge: 3600000 }, //one hour
-    store: MongoStore.create({
-      mongoUrl: "mongodb://127.0.0.1:27017/todolistDB",
-    }),
-  })
-);
+// app.use(
+//   session({
+//     secret: "jklfsodifjsktnwjasdp465dd",
+//     resave: false,
+//     saveUninitialized: true,
+//     cookie: { maxAge: 3600000 }, //one hour
+//     store: MongoStore.create({
+//       mongoUrl: "mongodb://127.0.0.1:27018/Moonlight-DB",
+//     }),
+//   })
+// );
+
+app.get('/', (req,res) => {
+  console.log(req.session);
+  req.session.text = 'Hello'
+  res.render("login.ejs");
+}); 
+
+// app.post('/sign up', async(req, res) => {
+//   const { newEmail, newPassword } = req.body;
+// })
 
 app.post("/login", async (req, res) => {
   const { email, password } = req.body;
@@ -37,7 +60,7 @@ app.post("/login", async (req, res) => {
     req.session.userId = oldUser.id;
     console.log(req.session);
   } else {
-    const newUser = new User({ email: email, password: password });
+    const newUser = new User({ email: newEmail, password: newPassword });
     newUser.save();
     req.session.userId = newUser.id;
     console.log(req.session);
@@ -45,11 +68,27 @@ app.post("/login", async (req, res) => {
   res.redirect("/");
 });
 
-app.post("/logout", (req, res) => {
-  req.session.destroy(function (err) {
-    res.redirect("/");
-  });
-});
+app.get('/signup', async(req, res) => {
+  const {email, password} = req.body;
+  const valPassword = req.body.newPasswordVal;
+  const oldUser = await User.findOne({ email: email, password: password });
+
+  if(password == valPassword) {
+    const newUser = new User({ email: newEmail, password: newPassword });
+    newUser.save();
+    req.session.userId = newUser.id;
+  }else {
+    console.log('Wrong');
+  }
+  res.redirect('/')
+  console.log(req.session);
+})
+
+// app.post("/logout", (req, res) => {
+//   req.session.destroy(function (err) {
+//     res.redirect("/");
+//   });
+// });
 
 app.listen("3000", () => {
   console.log("Server is running on Port 3000.");
