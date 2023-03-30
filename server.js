@@ -4,10 +4,11 @@ const mongoose = require("mongoose");
 const MongoStore = require("connect-mongo");
 const Authn = require("./control/authen");
 const { connect } = require("moongose/routes");
-const { User } = require("./model/User");
+const { User } = require("./model/user");
 const db = require("./config/db.js");
 const bodyParser = require("body-parser");
 const { log } = require("console");
+const { res } = require('./model/res');
 
 const app = express();
 
@@ -32,8 +33,7 @@ app.use(session({
 }));
 
 app.get('/', (req,res) => {
-  console.log(req.session);
-  req.session.text = 'Hello'
+  console.log(req.session.userId);
   res.render("home.ejs");
 }); 
 
@@ -50,9 +50,15 @@ app.get('/profile', (req, res) => {
   res.render('profile.ejs')
 })
 app.get('/login', (req, res) => {
-  res.render('profile.ejs')
+  res.render('login.ejs')
 })
-app.get('/drinks', (req, res) => {
+app.get('/dessert', (req, res) => {
+  res.render('dessert.ejs')
+})
+app.get('/appetizer', (req, res) => {
+  res.render('appetizer.ejs')
+})
+app.get('/drink', (req, res) => {
   res.render('drink.ejs')
 })
 app.get('/main', (req, res) => {
@@ -64,55 +70,61 @@ app.get('/history', (req, res) => {
 app.get('/ordering_status', (req, res) => {
   res.render('ordering_status.ejs')
 })
-// app.get('/home', (req, res) => {
-//   res.render('home.ejs')
-// })
+app.get('/admin-queueing', (req, res) => {
+  res.render('admin-queueing.ejs')
+})
 
 app.get('/admin', (req, res) => {
   res.render('admin.ejs')
 })
 
-// app.post('/sign up', async(req, rwes) => {
-//   const { newEmail, newPassword } = req.body;
-// })
 
 app.post("/login", async (req, res) => {
   const { email, password } = req.body;
-  const User = await User.findOne({ email: email, password: password });
-  if (email == User.email) {
-    if(password == User.password) {
-      req.session.userId = User.id;
-      console.log(req.session);
-      res.redirect('/home')
+  console.log(req.body)
+  const userLog = await User.findOne({ email: email , password: password});
+  console.log(userLog.email);
+  if (userLog != null) {
+    if(password == userLog.password) {
+      req.session.userId = userLog.id;
+      // console.log(req.session , );
+      
+      if(userLog.role == 'User'){
+        res.redirect('/');
+      } else {
+        res.redirect('/admin-queueing');  
+      }
     } else {
-      alert.window('Wrong Password')
+      console.log('Wrong Password');
     }
   } else {
-    alert.window('Wrong Email');
+    console.log('wrong');
   }
+  
 });
 
 app.post('/signup', async(req, res) => {
   const {newEmail, newPassword, newPasswordVal} = req.body;
+  const roleDefault = 'User';
   // const oldUser = await User.findOne({ email: email, password: password });
 
     if(newPassword == newPasswordVal) {
-      const newUser = new User({ email: newEmail, password: newPassword});
+      const newUser = new User({ email: newEmail, password: newPassword, role: roleDefault});
       newUser.save();
       req.session.userId = newUser.id;
     }else {
-      console.log('Wrong');
+      alert("The password doesn't match");
   }
- 
+
   res.redirect('/')
   console.log(req.session);
 })
 
-// app.post("/logout", (req, res) => {
-//   req.session.destroy(function (err) {
-//     res.redirect("/");
-//   });
-// });
+app.post("/logout", (req, res) => {
+  req.session.destroy(function (err) {
+    res.redirect("/");
+  });
+});
 
 app.listen("3000", () => {
   console.log("Server is running on Port 3000.");

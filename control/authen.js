@@ -1,4 +1,4 @@
-const Session = require("../model/User");
+const Session = require("../model/user");
 
 
 module.exports.authentication = async (req, res, next) => {
