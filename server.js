@@ -25,7 +25,7 @@ app.use(session({
   saveUninitialized: true,
   cookie: { maxAge: 3600000 },
   store: MongoStore.create({
-  mongoUrl: `mongodb://Mongo:Mongo1234@localhost:27018/?authMechanism=DEFAULT`,
+  mongoUrl: `mongodb://Mongo:Mongo1234@localhost:27016/?authMechanism=DEFAULT`,
   dbName: "Moonlight-DB" 
 }),
 }));
@@ -33,7 +33,7 @@ app.use(session({
 app.get('/', (req,res) => {
   console.log(req.session);
   req.session.text = 'Hello'
-  res.render("login.ejs");
+  res.render("home.ejs");
 }); 
 
 // app.post('/sign up', async(req, rwes) => {
@@ -42,16 +42,16 @@ app.get('/', (req,res) => {
 
 app.post("/login", async (req, res) => {
   const { email, password } = req.body;
-  const oldUser = await User.findOne({ email: email, password: password });
-  if (oldUser) {
-    req.session.userId = oldUser.id;
-    console.log(req.session);
-  } else {
-    const newUser = new User({ email: newEmail, password: newPassword });
+  // const oldUser = await User.findOne({ email: email, password: password });
+  // if (oldUser) {
+  //   req.session.userId = oldUser.id;
+  //   console.log(req.session);
+  // } else {
+    const newUser = new User({ email: email, password: password});
     newUser.save();
-    req.session.userId = newUser.id;
-    console.log(req.session);
-  }
+  //   req.session.userId = newUser.id;
+  //   console.log(req.session);
+  // }
   res.redirect("/");
 });
 
