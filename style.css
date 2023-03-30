@@ -315,7 +315,6 @@ a.name {
 }
 
 .container-row {
-    position: fixed;
     margin-left: 12%;
     display: block;
 }
