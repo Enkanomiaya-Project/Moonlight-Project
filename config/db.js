@@ -6,7 +6,7 @@ exports.connect = () => {
             username: "Mongo",
             password: "Mongo1234"
         },
-        dbName: "restuarant"
+        dbName: "Moonlight-DB"
     }).then( () => console.log("Database is connected"))
     .catch( e => console.error(e)) 
 }

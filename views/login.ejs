@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="screen">
+            <div class="screen__content">
+                <p class="login_text">LOGIN</p>
+                <form class="login" action="/login" method="post">
+                    <div class="login__field">
+                        <i class="login__icon fas fa-user"></i>
+                        <img class="mail_icon" src="/picture/mail.png" alt="mail_icon">
+                        <input type="text" class="login__input" placeholder="User name / Email" name="email">
+                    </div>
+                    <div class="login__field">
+                        <i class="login__icon fas fa-lock"></i> 
+                        <img class="password_icon" src="/picture/pass.png" alt="password_icon" name="password">
+                        <input type="password" class="login__input" placeholder="Password">
+                    </div>
+                    <div class="to_signup">
+                        <p>Don't have an account? <span><a href="signup">Sign Up</a></span></p>
+                    </div>
+                    <button class="button login__submit"  name="submit" value="submit">
+                        <span class="button_text">Log In </span>
+                    </button>				
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</body>
+</html>
