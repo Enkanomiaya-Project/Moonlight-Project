@@ -8,7 +8,6 @@ const { User } = require("./model/user");
 const db = require("./config/db.js");
 const bodyParser = require("body-parser");
 
-
 const app = express();
 
 app.use(express.static("public"));
@@ -31,25 +30,13 @@ app.use(session({
 }),
 }));
 
-// app.use(
-//   session({
-//     secret: "jklfsodifjsktnwjasdp465dd",
-//     resave: false,
-//     saveUninitialized: true,
-//     cookie: { maxAge: 3600000 }, //one hour
-//     store: MongoStore.create({
-//       mongoUrl: "mongodb://127.0.0.1:27018/Moonlight-DB",
-//     }),
-//   })
-// );
-
 app.get('/', (req,res) => {
   console.log(req.session);
   req.session.text = 'Hello'
   res.render("login.ejs");
 }); 
 
-// app.post('/sign up', async(req, res) => {
+// app.post('/sign up', async(req, rwes) => {
 //   const { newEmail, newPassword } = req.body;
 // })
 
@@ -68,21 +55,21 @@ app.post("/login", async (req, res) => {
   res.redirect("/");
 });
 
-app.get('/signup', async(req, res) => {
-  const {email, password} = req.body;
-  const valPassword = req.body.newPasswordVal;
-  const oldUser = await User.findOne({ email: email, password: password });
+// app.get('/signup', async(req, res) => {
+//   const {email, password} = req.body;
+//   const valPassword = req.body.newPasswordVal;
+//   const oldUser = await User.findOne({ email: email, password: password });
 
-  if(password == valPassword) {
-    const newUser = new User({ email: newEmail, password: newPassword });
-    newUser.save();
-    req.session.userId = newUser.id;
-  }else {
-    console.log('Wrong');
-  }
-  res.redirect('/')
-  console.log(req.session);
-})
+//   if(password == valPassword) {
+//     const newUser = new User({ email: newEmail, password: newPassword });
+//     newUser.save();
+//     req.session.userId = newUser.id;
+//   }else {
+//     console.log('Wrong');
+//   }
+//   res.redirect('/')
+//   console.log(req.session);
+// })
 
 // app.post("/logout", (req, res) => {
 //   req.session.destroy(function (err) {
