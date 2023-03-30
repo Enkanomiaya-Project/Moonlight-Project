@@ -8,27 +8,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <div class="navbar">
-            <div class="storeicon" style="width: 50px;">
-                <img src="/picture/store_icon.png" alt="storeicon" style="width: 50px;">
-            </div>
-            <div class="nav-link">
-                <ul>
-                    <li><a href="home.html" class="nav-item">Home</a></li>
-                    <li><a href="main.html" class="nav-item">Menu</a></li>
-                    <li><a href="#footer" class="nav-item">Contact</a></li>
-                </ul> 
-            </div>
-            <div class="cart-icon" style="width: 50px;">
-                <a href="cart.html"><img src="/picture/cart_icon.jpeg" alt="acarticon" style="width: 42px;"></a>
-            </div>
-            <div class="account-icon" style="width: 50px;">
-                <a href=""><img src="/picture/user_icon.png" alt="accounticon" style="width: 42px;"></a>
-            </div>
-            <hr class="line">  
-        </div>
-    </header>
+   
     <div class="block">
         <img src="/picture/profile_icon.png" alt="profileicon" class="profile-icon">
     </div>
@@ -100,33 +80,7 @@
         </div>
     </div>
 
-    <footer>
-        <div class="footer-content">
-            <div class="contact-content">
-                <div class="phone">
-                    <div style="padding: 5px;">
-                        <img src="/picture/phone_whiteicon.png" alt="phonecontact" style="width: 35px; ">
-                    </div>
-                    <div>
-                        <p style="font-size: 25px;">1234</p>
-                    </div>
-                </div>
-                <p style="margin-top: 20px;">Contact</p>
-                <p style="margin-top: 20px;">Follow us</p>
-                <div class="social-icon">
-                    <div>
-                        <img src="/picture/fb_icon.png" alt="facebook" style="width: 50px;">
-                    </div>  
-                    <div>
-                        <img src="/picture/line_icon.png" alt="line" style="width: 50px;">
-                    </div>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>Copyright © 2023 Enkonomiya. All rights reserved</p>
-            </div>
-        </div>
-    </footer>
+    <%- include('partials/footer'); %>
     
 </body>
 </html>
