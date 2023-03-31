@@ -1,35 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cart</title>
-    <link rel="stylesheet" href="/public/css/style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="/public/css/style.css" />
+
+    <style>
+      table tr td {
+        margin: 1rem;
+      }
+      table {
+        width: 100%;
+        margin: 2rem;
+        margin-left: 5rem;
+      }
+    </style>
+  </head>
+  <body>
     <%- include('partials/header'); %>
 
     <div class="cart-container">
-        <div class="heading">
-            <h1>Cart</h1>
-        </div>
-        <div class="cart-content">
-            <table>
-                <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            </table>
-
-            <div class="btn-buy">
-                <button class="btn" style="color: white;">Purchase</button>
+      <div class="heading">
+        <h1>Cart</h1>
+      </div>
+      <div class="cart-content">
+        <table>
+          <tr>
+            <th>Menu</th>
+            <th>Price</th>
+            <th></th>
+         
+          </tr>
+          
+          <% newListItems.forEach(function(item) { %>
+          <tr>
+            <td><%= item.menu %></td>
+            <td><%= item.price %></td>
+            <td>
+            <div class="del">
+                    <form action="/delete" method="post">
+                      <div class="item">
+                        <button type="hidden" name="listName" ></button>
+                        <button type="submit" name="button" class="btn btn-danger " style="width: 4rem; height: 2rem; background-color: red; cursor: pointer;"  value="<%= item._id%>">DEL</button>
+                        <p><%= item.name %></p>
+                      </div>
+                    </form>
+             
             </div>
+            </td>
+          </tr>
+          <% }); %>
+        </table>
+        <hr class="line" style="width: 100%;"> 
+
+        <table>
+            <tr>
+                <td>Total Price</td>
+                <td><%= total %></td>
+            </tr>
+        </table>
+
+        <div class="btn-buy" action="/cart" method="post">
+          <button class="btn" style="color: white">Purchase</button>
         </div>
+      </div>
     </div>
 
     <%- include('partials/footer'); %>
-</body>
+  </body>
 </html>

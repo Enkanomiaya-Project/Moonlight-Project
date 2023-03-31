@@ -174,7 +174,7 @@ body {
     border-bottom: 2px solid #D1D1D4;
     background: white;
     padding: 10px;
-    padding-left: 35px;
+    padding-left: 15px;
     font-weight: 700;
     width: 320px;
     transition: .2s;
@@ -227,7 +227,7 @@ body {
 /* Home page*/
 .promotion {
     position: relative;
-    margin-top: 10%;
+    margin-top: 0rem;
     margin-bottom: 10%;
 }
 
@@ -328,6 +328,10 @@ a.name {
     height: 200px;
 }
 
+.add-to-cart {
+    cursor: pointer;
+}
+
 .btn {
     border: 1px solid #6A679E;
     background-color: #6A679E;
@@ -335,7 +339,10 @@ a.name {
     width: 210px;
     height: 30px;
     position: relative;
+
 }
+
+
 
 /* Profile page */
 
@@ -450,20 +457,20 @@ hr.line {
 
 .storeicon {
     position: absolute; 
-    margin-top: 7px;
+    margin-top: 10px;
     margin-left: 10px;
 }   
 
 .account-icon {
     position: absolute; 
-    margin-left: 93%;
-    margin-top: -50px;
+    margin-left: 85%;
+    margin-top: -55px;
 }
 
 .cart-icon {
     position: absolute; 
-    margin-left: 85%;
-    margin-top: -50px;
+    margin-left: 80%;
+    margin-top: -55px;
 }
 
 /* Footer */
@@ -518,7 +525,7 @@ hr.line {
     border: 1px solid #b8a6c0;
     border-radius: 20px;
     width: auto;
-    height: 900px; /* can be auto , just put this size to see the overall picture*/
+    height: auto; /* can be auto , just put this size to see the overall picture*/
     margin-top: 30px;
 }
 
@@ -529,6 +536,8 @@ hr.line {
 }
 
 .btn-buy {
+    position: relative;
+    bottom: 2rem;
     margin-left: 10%;
     margin-right: 10%;
     margin-top: 10%;
@@ -578,6 +587,32 @@ a , a:visited {
     height: 100%;
 }
 
-.logout {
-	position: relative;
-}
+/* ADD BUTTON SIGN IN & SIGN UP*/
+
+.btn-sign {
+    width: 220px;
+    height: 30px;
+    position: relative;
+    margin-left: 60%;
+    margin-bottom: 20px;
+}   
+
+.btn-sign_in {
+    width: 100px;
+    height: 30px;
+    background-color: #b8a6c0;
+    border: 1px solid #b8a6c0;
+    border-radius: 8px;
+    margin-left: 250px;
+    border-left: 30px;
+}   
+
+.btn-sign_up {
+    width: 100px;
+    height: 30px;
+    background-color: #b8a6c0;
+    border: 1px solid #b8a6c0;
+    border-radius: 8px;
+    margin-left: 40px;
+    border-left: 30px;
+} 

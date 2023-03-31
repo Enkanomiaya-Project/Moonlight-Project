@@ -2,19 +2,23 @@ const express = require("express");
 const session = require("express-session");
 const mongoose = require("mongoose");
 const MongoStore = require("connect-mongo");
-const Authn = require("./control/authen");
+const Authn = require("./controller/authen");
 const { connect } = require("moongose/routes");
 const { User } = require("./model/user");
 const db = require("./config/db.js");
 const bodyParser = require("body-parser");
 const { log } = require("console");
-const { res } = require('./model/res');
+const { Item, FoodDelivery } = require("./model/res");
+const { List } = require("./model/res");
+// const { FoodDelivery } = require('./model/res');
 
 const app = express();
+const orderList = [];
 
+app.use(express.json()) 
 app.use('/public' ,express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
-app.set("view engine", "ejs");
+app.set("view engine", "ejs"); 
 
 // const mongoURI = "mongodb://localhost:27016/sessions";
 // const store = new MongoStore();
@@ -36,15 +40,17 @@ app.get('/', (req,res) => {
   console.log(req.session.userId);
   res.render("home.ejs");
 }); 
-
 app.get('/signup', (req, res) => {
   res.render('signup.ejs')
 })
 app.get('/main', (req, res) => {
   res.render('main.ejs')
 })
-app.get('/cart', (req, res) => {
-  res.render('cart.ejs')
+app.get('/cart', async(req, res) => {
+  const items = await Item.find({});
+  const sum = items.reduce((a,b)=> a+new Number(b.price), 0);
+  console.log(sum);
+  res.render("cart.ejs", { newListItems: items , total: sum});
 })
 app.get('/profile', (req, res) => {
   res.render('profile.ejs')
@@ -73,11 +79,19 @@ app.get('/ordering_status', (req, res) => {
 app.get('/admin-queueing', (req, res) => {
   res.render('admin-queueing.ejs')
 })
-
-app.get('/admin', (req, res) => {
-  res.render('admin.ejs')
+app.get('/admin-cooking', async(req, res) => {
+  const resFood = await FoodDelivery.find({});
+  res.render('admin-cooking.ejs', { newListItems: resFood })
 })
-
+app.get('/admin-delivering', (req, res) => {
+  res.render('admin-delivering.ejs')
+})
+app.get('/admin-successed', (req, res) => {
+  res.render('admin-successed.ejs')
+})
+app.get('/logout', (req, res) => {
+  res.render('home.ejs');
+})
 
 app.post("/login", async (req, res) => {
   const { email, password } = req.body;
@@ -88,7 +102,6 @@ app.post("/login", async (req, res) => {
     if(password == userLog.password) {
       req.session.userId = userLog.id;
       // console.log(req.session , );
-      
       if(userLog.role == 'User'){
         res.redirect('/');
       } else {
@@ -113,7 +126,7 @@ app.post('/signup', async(req, res) => {
       newUser.save();
       req.session.userId = newUser.id;
     }else {
-      alert("The password doesn't match");
+      console.log("The password doesn't match");
   }
 
   res.redirect('/')
@@ -122,9 +135,71 @@ app.post('/signup', async(req, res) => {
 
 app.post("/logout", (req, res) => {
   req.session.destroy(function (err) {
+    console.log(req.session.userId);
     res.redirect("/");
   });
+}); 
+
+app.post('/addToCart' , async(req,res) => {
+  const items = await Item.find({});
+  const {menu , price} = req.body
+
+  Item.insertMany({menu: menu, price})
+    .then(() => console.log("Add data successed"))
+    .catch((err) => console.log(err));
+
+  console,log(items);
+  // console.log(req.body); 
+  // res.json({ message: 'OK' });  
 });
+
+app.post('/cart', async(req, res) => {
+  const items = await Item.find({});
+  const newItems = new Item({menu: items, price: items});
+  const result = result + items.price;
+  newItems.save();
+  const updateList = await List.updateOne(
+      { menu: menu, price: price},
+      { $push: { items: newItems} }
+    );
+    console.log("Success");
+})
+
+app.post('/admin-cooking', async(req, res) => {
+  const resFood = await FoodDelivery.find({});
+  const newItems = new FoodDelivery({id: resFood, first_name: resFood, date: resFood, totalAmount: resFood, status:resFood});
+  newItems.save();
+  const updateList = await FoodDelivery.updateOne(
+    {id: resFood, first_name: resFood, date: resFood, totalAmount: resFood, status:resFood}, 
+      { $push: { resFood: newItems} }
+    );
+    console.log("Success");
+})
+
+app.post("/delete", async (req, res) => {
+  const listName = req.body.listName;
+  const deleteItemId = req.body.button;
+  console.log(deleteItemId);
+  const result = await Item.findByIdAndRemove(deleteItemId);
+  res.redirect('/cart'); 
+ 
+}); 
+
+// app.post("/delete", async (req, res) => {
+//   const listName = req.body.listName;
+//   const deleteItemId = req.body.checkbox;
+  
+//   if (listName == "Today") {
+//     const result = await Item.findByIdAndRemove(deleteItemId);
+//     res.redirect("/");
+//   } else { 
+//     const updateList = await List.updateOne(
+//       { name: listName },
+//       { $pull: { items: { _id: deleteItemId } }}
+//       );      
+//     res.redirect("/" + listName); 
+//   }
+// });
 
 app.listen("3000", () => {
   console.log("Server is running on Port 3000.");

@@ -32,8 +32,8 @@
                    </ul>
             </div>
 
-            <div class="logout" action="/logut" method="post">
-                <button class="btn btn-light btn-outline-light shadow-lg border-dark" type="button">Logout</button>
+            <div class="logout" >
+                <a href="/" action="/logout" method="post"><button class="btn btn-light btn-outline-light shadow-lg border-dark" type="button">Logout</button></a>
             </div>
 
         </div>
@@ -60,15 +60,17 @@
               <th>Status</th>
               <th></th>
             </tr>
+        <% newListItems.forEach(function(item) { %>
             <tr>
               <td><input type="checkbox" checked="checked"></td>
-              <td>1</td>
-              <td>Dusit</td>
-              <td>22/09/2023</td>
-              <td> 7 </td>
-              <td>COOKING</td>
+              <td><%= item.id %></td>
+              <td><%= item.first_name %></td>
+              <td><%= item.date %></td>
+              <td><%= item.totalAmount %></td>
+              <td><%= item.status %></td>
               <td><button class="btn btn-danger" type="button">DEL</button></i></td>
             </tr>
+        <% }); %>
             <tr>
                 <td><input type="checkbox" checked="checked"></td>
                 <td>2</td>
@@ -78,6 +80,7 @@
                 <td>COOKING</td>
                 <td><button class="btn btn-danger" type="button">DEL</button></i></td>
             </tr>
+       
           </table>
     </div>
 
