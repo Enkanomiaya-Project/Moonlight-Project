@@ -13,7 +13,7 @@ const { List } = require("./model/res");
 // const { FoodDelivery } = require('./model/res');
 
 const app = express();
-const orderList = [];
+const orderList = []; 
 
 app.use(express.json()) 
 app.use('/public' ,express.static("public"));
@@ -54,7 +54,7 @@ app.get('/cart', async(req, res) => {
 })
 app.get('/profile', (req, res) => {
   res.render('profile.ejs')
-})
+}) 
 app.get('/login', (req, res) => {
   res.render('login.ejs')
 })
@@ -182,7 +182,6 @@ app.post("/delete", async (req, res) => {
   console.log(deleteItemId);
   const result = await Item.findByIdAndRemove(deleteItemId);
   res.redirect('/cart'); 
- 
 }); 
 
 // app.post("/delete", async (req, res) => {
