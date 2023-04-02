@@ -35,7 +35,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/moonlight:latest
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/moonlight-project:latest
       -
         name: Prepare the docker-compose run
         run: |
