@@ -1,12 +1,57 @@
-name: deploy on push
-'on':
+name: deploy dev
+on:
   push:
     branches:
       - master
 
 jobs:
-  docker:
+  tagging:
+    name: tagging
     runs-on: ubuntu-latest
+    environment: master
+    steps:
+      - 
+        name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 
+          token: ${{ secrets.PAT }}
+      - 
+        name: Get semantic versioning
+        id: versioning
+        uses: paulhatch/semantic-version@v5.0.2
+        with:   
+          branch: master
+          tag_prefix: "v"
+          major_pattern: "BREAKING CHANGE"
+          minor_pattern: "feat"
+          version_format: "${major}.${minor}.${patch}"
+      - name: Test
+        continue-on-error: true
+        run: | 
+          npm install
+          npm run test
+      -
+        name: Update version in package.json and add tag to git
+        continue-on-error: true
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          npm version v${{ steps.versioning.outputs.version }}
+          git push --follow-tags 
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  deploy-app:
+    needs: tagging
+    runs-on: ubuntu-latest
+    env:
+      HOST: ${{ secrets.HOST }}
+      DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
+      MONGO_USER: ${{ secrets.MONGO_USER }}
+      MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}
+      MONGO_PORT: ${{ secrets.MONGO_DEV_PORT }}
+      PORT: 8082
     steps:
       - 
         name: Checkout
@@ -21,25 +66,24 @@ jobs:
         name: Login to DockerHub
         uses: docker/login-action@v2
         with:
-          username: ${{ secrets.DOCKER_HUB_USER_NAME }}
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
-      -
-        name: Prepare the docker-compose run
-        run: |
-              ls -l
       -
         name: Build and push
         uses: docker/build-push-action@v4
         with:
-          context: .
           push: true
-          tags: deityzs/Moonlight-Project:latest
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/moonlight-project:latest
       -
+        name: Prepare the docker-compose run
+        run: |
+              ls -l
+      - 
         name: Prepare docker-compose run
         run: |
-              mkdir Moonlight-Project
-              cp docker-compose.yml Moonlight-Project/docker-compose.yml
-              cd Moonlight-Project
-              docker-compose -H ${{ secrets.HOST_SERVER }} down
-              docker-compose -H ${{ secrets.HOST_SERVER }} pull
-              docker-compose -H ${{ secrets.HOST_SERVER }} up -d
+              mkdir moonlight-project
+              cp docker-compose.yml moonlight-project/docker-compose.yml
+              cd moonlight-project
+              docker-compose -H ${{ secrets.DOCKER_HOST_SERVER }} -f docker-compose.yml down
+              docker-compose -H ${{ secrets.DOCKER_HOST_SERVER }} -f docker-compose.yml pull
+              docker-compose -H ${{ secrets.DOCKER_HOST_SERVER }} -f docker-compose.yml up -d

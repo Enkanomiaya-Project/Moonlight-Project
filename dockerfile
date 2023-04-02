@@ -1,11 +1,9 @@
-FROM node:16.14.2-alpine
+FROM node:latest
 
-WORKDIR /app
+WORKDIR /app 
+ COPY package.json . 
+ RUN npm install  
+ COPY . ./   
+ EXPOSE 3000
 
-COPY package.json .
-RUN npm install 
-COPY . ./
-ENV PORT 8080 
-EXPOSE $PORT
-
-CMD [ "npm","run", "start" ]
+ CMD [ "npm","server.js" ]

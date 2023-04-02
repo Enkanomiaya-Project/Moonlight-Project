@@ -1,23 +1,30 @@
 {
   "name": "moonlight-project",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "642115017 Dusit Chunviset  \r 642115023 Thanyatorn Noenpoempisut",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Enkanomiaya-Project/Moonlight-Project.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Enkanomiaya-Project/Moonlight-Project/issues"
+  },
+  "homepage": "https://github.com/Enkanomiaya-Project/Moonlight-Project#readme",
   "dependencies": {
     "axios": "^1.3.4",
     "body-parser": "^1.20.2",
     "connect-mongodb": "^1.1.5",
-    "connect-mongodb-session": "^3.1.1",
     "express": "^4.18.2",
     "express-session": "^1.17.3",
-    "install": "^0.13.0",
-    "moongose": "^1.0.0",
+    "mongoose": "^7.0.3",
     "nodemon": "^2.0.22"
   }
 }
