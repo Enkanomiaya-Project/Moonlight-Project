@@ -30,7 +30,7 @@ app.use(session({
   saveUninitialized: true,
   cookie: { maxAge: 3600000 },
   store: MongoStore.create({
-  mongoUrl: `mongodb://Mongo:Mongo1234@3.214.159.171:27016/?authMechanism=DEFAULT`,
+  mongoUrl: `mongodb://Mongo:Mongo1234@172.17.0.1:27016/?authMechanism=DEFAULT`,
   dbName: "Moonlight-DB" 
   }),
 }));

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 exports.connect = () => {
-    mongoose.connect('mongodb://3.214.159.171:27016/', {
+    mongoose.connect('mongodb://172.17.0.1:27016/', {
         auth: {
             username: "Mongo",
             password: "Mongo1234"
