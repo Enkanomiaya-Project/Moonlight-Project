@@ -16,7 +16,7 @@ services:
       - mongo-db-master:/data/db
 
   app-server-master:
-    image:  ${DOCKER_HUB_USERNAME}/moonlight:latest
+    image:  ${DOCKER_HUB_USERNAME}/moonlight-project:latest
     environment:
       MONGO_USER: Mongo
       MONGO_PASSWORD: Mongo1234
