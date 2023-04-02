@@ -3,7 +3,6 @@ const session = require("express-session");
 const mongoose = require("mongoose");
 const MongoStore = require("connect-mongo");
 const Authn = require("./controller/authen");
-const { connect } = require("mongoose/routes");
 const { User } = require("./model/user");
 const db = require("./config/db.js");
 const bodyParser = require("body-parser");
