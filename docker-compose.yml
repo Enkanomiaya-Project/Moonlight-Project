@@ -9,7 +9,7 @@ services:
       MONGO_INITDB_ROOT_USERNAME: Mongo
       MONGO_INITDB_ROOT_PASSWORD: Mongo1234
     ports:
-      - "8082:27016"
+      - "27017:27016"
     networks:
       - default
     volumes:
