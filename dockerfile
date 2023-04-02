@@ -6,4 +6,4 @@ WORKDIR /app
  COPY . ./   
  EXPOSE 3000
 
- CMD [ "npm","server.js" ]
+ CMD [ "npm","node server.js" ]

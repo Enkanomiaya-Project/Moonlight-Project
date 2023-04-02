@@ -10,10 +10,6 @@ jobs:
     environment: master
     env:
       DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
-      MONGO_USER: Mongo
-      MONGO_PASSWORD: Mongo1234
-      MONGO_PORT: 27016
-      PORT: 8081
     steps:
       - 
         name: Checkout
