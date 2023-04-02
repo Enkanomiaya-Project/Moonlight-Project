@@ -44,7 +44,7 @@ jobs:
         name: Prepare docker-compose run
         run: |
               mkdir moonlight-project
-              cp docker-compose.yml moonlight/docker-compose.yml
+              cp docker-compose.yml moonlight-project/docker-compose.yml
               cd moonlight-project
               docker-compose -H ${{ secrets.DOCKER_HOST_SERVER }} -f docker-compose.yml down
               docker-compose -H ${{ secrets.DOCKER_HOST_SERVER }} -f docker-compose.yml pull
